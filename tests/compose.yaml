@@ -1,0 +1,7 @@
+services:
+  web1:
+    image: httpd
+    ports:
+      - 80:80
+    volumes:
+      - ./:/media/shared/dapw
