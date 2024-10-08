@@ -1,7 +1,22 @@
 services:
-  web1:
-    image: httpd
+  db:
+    # Restart : always --> very good for prod.
+    image: mysql
+    hostname: 'Database'
+    container_name: dapw-mysql
+    env_file:
+      - '.env'
     ports:
-      - 80:80
+      - '3306:3306'
     volumes:
-      - ./:/media/shared/dapw
+      - datosdb:/var/lib/mysql
+    secrets:
+      - db_password
+      - root_password
+volumes:
+  datosdb:
+secrets:
+  db_password:
+    file: db_password.txt
+  root_password:
+    file: root_password.txt
